@@ -3,7 +3,7 @@
   <id>com.valvesoftware.SteamLink</id>
   <launchable type="desktop-id">com.valvesoftware.SteamLink.desktop</launchable>
   <metadata_license>MIT</metadata_license>
-  <project_license>LicenseRef-Proprietary</project_license>
+  <project_license>LicenseRef-proprietary</project_license>
   <name>Steam Link</name>
   <summary>Stream games from another computer with Steam</summary>
   <description>
