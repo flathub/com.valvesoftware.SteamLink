@@ -176,6 +176,12 @@ modules:
         url: https://repo.steampowered.com/hidden/steamlink/b8b1b94651e7a4cfd6335180697cd35dda771058f942900b5775a69720d218c8/steamlink-1.1.73.179.tgz
         sha256: b8b1b94651e7a4cfd6335180697cd35dda771058f942900b5775a69720d218c8
         strip-components: 1
+        x-checker-data:
+          is-main-source: true
+          type: html
+          url: https://repo.steampowered.com/steamlink/latest/
+          version-pattern: "href=\"steamlink-(\\d[\\d.-]*)\\.tgz\""
+          url-template: https://repo.steampowered.com/steamlink/$version/steamlink-$version.tgz
     buildsystem: simple
     build-commands:
       - "install bin/steamlink /app/bin"
