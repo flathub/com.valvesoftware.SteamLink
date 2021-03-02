@@ -1,6 +1,14 @@
 Steam Link - Flatpak packaging
 ==============================
 
+The Steam Link app is not open-source and does not accept external
+contributions. This Flatpak packaging downloads precompiled binaries
+from Valve and adds them to the Flatpak app's directory hierarchy as-is.
+
+Please note that Valve has not given permission to redistribute the
+Steam Link app binaries, other than via the official Flatpak package
+on Flathub.
+
 Layout
 ------
 
@@ -34,8 +42,8 @@ and also pulls together:
     * a [Desktop Entry](https://specifications.freedesktop.org/desktop-entry-spec/latest/)
         to launch it with
 
-Rebuilding this package locally
--------------------------------
+Test-building this package locally
+----------------------------------
 
 ### Install dependencies on build machine
 
