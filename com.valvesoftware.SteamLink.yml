@@ -16,7 +16,6 @@ finish_args:
 
 tags:
   - proprietary
-  - beta
 
 modules:
   - name: qt5-qtbase
