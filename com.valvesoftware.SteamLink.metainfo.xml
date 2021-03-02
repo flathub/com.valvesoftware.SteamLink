@@ -2,6 +2,8 @@
 <component type="desktop-application">
   <id>com.valvesoftware.SteamLink</id>
   <launchable type="desktop-id">com.valvesoftware.SteamLink.desktop</launchable>
+  <!-- Copyright 2003-2021 Valve Corp. -->
+  <!-- Copyright 2021 Collabora Ltd. -->
   <metadata_license>MIT</metadata_license>
   <project_license>LicenseRef-proprietary</project_license>
   <name>Steam Link</name>
