@@ -182,11 +182,25 @@ modules:
           url: https://repo.steampowered.com/steamlink/latest/
           version-pattern: "href=\"steamlink-(\\d[\\d.-]*)\\.tgz\""
           url-template: https://repo.steampowered.com/steamlink/$version/steamlink-$version.tgz
+      - type: file
+        path: LICENSE.txt
+        dest-filename: LICENSE.txt-from-git
+      - type: file
+        path: ThirdPartyLegalNotices.css
+        dest-filename: ThirdPartyLegalNotices.css-from-git
+      - type: file
+        path: ThirdPartyLegalNotices.html
+        dest-filename: ThirdPartyLegalNotices.html-from-git
     buildsystem: simple
     build-commands:
       - "install bin/steamlink /app/bin"
       - "cp -a lib/* /app/lib"
-      - "cp -a *.txt ThirdPartyLegalNotices.* /app"
+      - "cp -a *.txt *.css *.html /app"
+      # Make sure the license information in the packaging repository is
+      # in sync with what's in the binary releases
+      - cmp LICENSE.txt LICENSE.txt-from-git
+      - cmp ThirdPartyLegalNotices.css ThirdPartyLegalNotices.css-from-git
+      - cmp ThirdPartyLegalNotices.html ThirdPartyLegalNotices.html-from-git
 
   - name: packaging
     sources:
