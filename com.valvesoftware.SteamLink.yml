@@ -8,6 +8,7 @@ finish_args:
   - --device=all
   - --env=LD_LIBRARY_PATH=/app/lib
   - "--env=SDL_GAMECONTROLLERCONFIG_FILE=/var/data/Valve Corporation/SteamLink/controller_map.txt"
+  - --env=QT_QPA_PLATFORM=xcb
   - --share=ipc
   - --share=network
   - --socket=pulseaudio
