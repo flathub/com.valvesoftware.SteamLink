@@ -19,7 +19,7 @@ flatpak-builder \
     --repo=_build/repo \
     --extra-sources=_source \
     _build \
-    ${YML}
+    ${YML} | grep -v -e "^Removing "
 
 flatpak \
     build-bundle \
