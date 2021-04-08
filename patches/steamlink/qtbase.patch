@@ -915,6 +915,24 @@ diff -ruN qt-everywhere-src-5.14.1.orig/qtbase/src/gui/painting/painting.pri qt-
          SOURCES += painting/qdrawhelper_neon.cpp painting/qimagescale_neon.cpp
          HEADERS += painting/qdrawhelper_neon_p.h
      }
+diff -ruN qt-everywhere-src-5.14.1.orig/qtbase/src/gui/painting/qpainter.cpp qt-everywhere-src-5.14.1/qtbase/src/gui/painting/qpainter.cpp
+--- qt-everywhere-src-5.14.1.orig/qtbase/src/gui/painting/qpainter.cpp	2020-01-23 04:37:32.000000000 -0800
++++ qt-everywhere-src-5.14.1/qtbase/src/gui/painting/qpainter.cpp	2021-04-07 10:34:36.000000000 -0700
+@@ -7644,8 +7644,12 @@
+     else
+         engine.option.setAlignment(Qt::AlignLeft); // do not do alignment twice
+ 
+-    if (!option && (tf & Qt::TextWrapAnywhere))
+-        engine.option.setWrapMode(QTextOption::WrapAnywhere);
++    if (!option) {
++        if (tf & Qt::TextWrapAnywhere)
++            engine.option.setWrapMode(QTextOption::WrapAnywhere);
++        else if (tf & Qt::TextWordWrap)
++            engine.option.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
++    }
+ 
+     if (tf & Qt::TextJustificationForced)
+         engine.forceJustification = true;
 diff -ruN qt-everywhere-src-5.14.1.orig/qtbase/src/gui/painting/qplatformbackingstore.h qt-everywhere-src-5.14.1/qtbase/src/gui/painting/qplatformbackingstore.h
 --- qt-everywhere-src-5.14.1.orig/qtbase/src/gui/painting/qplatformbackingstore.h	2020-01-23 04:37:32.000000000 -0800
 +++ qt-everywhere-src-5.14.1/qtbase/src/gui/painting/qplatformbackingstore.h	2020-12-24 08:16:33.000000000 -0800
