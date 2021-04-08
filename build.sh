@@ -2,6 +2,7 @@
 
 set -e
 set -x
+set -o pipefail
 
 YML=com.valvesoftware.SteamLink.yml
 while :; do
