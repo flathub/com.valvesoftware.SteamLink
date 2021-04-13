@@ -10,6 +10,7 @@ finish_args:
   - --env=SDL_GAMECONTROLLERCONFIG_FILE=/var/data/Valve Corporation/SteamLink/controller_map.txt
   - --share=ipc
   - --share=network
+  - --socket=fallback-x11
   - --socket=pulseaudio
   - --socket=wayland
   - --socket=x11
