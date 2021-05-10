@@ -8,7 +8,6 @@ finish_args:
   - --device=all
   - --env=LD_LIBRARY_PATH=/app/lib
   - --env=SDL_GAMECONTROLLERCONFIG_FILE=/var/data/Valve Corporation/SteamLink/controller_map.txt
-  - --env=QT_QPA_PLATFORM=xcb
   - --share=ipc
   - --share=network
   - --socket=pulseaudio
@@ -94,6 +93,29 @@ modules:
         mirror-urls:
           - https://repo.steampowered.com/steamlink/qtsvg-everywhere-src-5.14.1.tar.xz
         sha256: 8540a57312f815f81a45b891b49959d776727fde17579bb6bf1a537996bc9359
+
+  - name: qt5-wayland
+    buildsystem: qmake
+    cleanup:
+      - /bin
+      - /include
+      - /lib/*.a
+      - /lib/*.la
+      - /lib/*.prl
+      - /lib/cmake
+      - /lib/debug
+      - /lib/mkspecs
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: http://download.qt.io/archive/qt/5.14/5.14.1/submodules/qtwayland-everywhere-src-5.14.1.tar.xz
+        mirror-urls:
+          - https://repo.steampowered.com/steamlink/qtwayland-everywhere-src-5.14.1.tar.xz
+        sha256: 2a03b9f554e88c5824ef237c814b3dd45844c022e97be0e091f4a502ca4c9520
+      - type: patch
+        path: patches/org.kde.Sdk/qtwayland-use-gnome-platform-theme-on-gnome-based-desktops.patch
+      - type: patch
+        path: patches/backports/Fix-installing-qtwayland-without-qtquick-or-opengl-s.patch
 
   - name: extra-cmake-modules
     buildsystem: cmake-ninja
