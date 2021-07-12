@@ -160,6 +160,16 @@ modules:
         commands:
           - rm -fr po
 
+  - name: vaapi
+    buildsystem: meson
+    config-opts:
+      - -Ddriverdir=/usr/lib/x86_64-linux-gnu/GL/lib/dri
+    sources:
+      - type: git
+        url: https://github.com/intel/libva.git
+        # Version 2.11.0
+        commit: 64d75c08a720b73f4474b9265ca6dc99f947af8b
+
   - name: steamlink-binary
     sources:
       - type: archive
