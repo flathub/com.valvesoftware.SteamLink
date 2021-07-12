@@ -170,6 +170,13 @@ modules:
         # Version 2.11.0
         commit: 64d75c08a720b73f4474b9265ca6dc99f947af8b
 
+  - name: libva-utils
+    sources:
+      - type: git
+        url: https://github.com/intel/libva-utils.git
+        # Version 2.9.0
+        commit: ee781a3f5d70a7ff801940136b1d45d002b83091
+
   - name: steamlink-binary
     sources:
       - type: archive
