@@ -1,6 +1,6 @@
 app-id: com.valvesoftware.SteamLink
 runtime: org.freedesktop.Platform
-runtime-version: '20.08'
+runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: steamlink
 
@@ -42,6 +42,12 @@ modules:
         path: patches/org.kde.Sdk/qtbase-make-sure-to-correctly-construct-base-platform-theme.patch
       - type: patch
         path: patches/org.kde.Sdk/open-file-portal-writable.patch
+      - type: patch
+        path: patches/backports/Add-missing-limits-include.patch
+      - type: patch
+        path: patches/backports/Fix-build-with-GCC-11-include-limits.patch
+      - type: patch
+        path: patches/backports/Build-fixes-for-GCC-11.patch
       - type: shell
         commands:
           - mv configure configure.qt
