@@ -1,0 +1,31 @@
+From 10b8cca7915ebe217ed81323a334980f92ffae5b Mon Sep 17 00:00:00 2001
+From: Nicolas Fella <nicolas.fella@kdab.com>
+Date: Sun, 20 Jun 2021 17:36:41 +0200
+Subject: [PATCH 3/3] Add missing limits include
+
+The code uses std::numeric_limits but is lacking the appropriate include
+
+Change-Id: I41fa5ac4d8c4e06f35b5b1551ef2ad8417df80bd
+Reviewed-by: Giuseppe D'Angelo <giuseppe.dangelo@kdab.com>
+(cherry picked from commit 2b2b3155d9f6ba1e4f859741468fbc47db09292b)
+Reviewed-by: Qt Cherry-pick Bot <cherrypick_bot@qt-project.org>
+Origin: upstream, 6.2.0-alpha1, commit:380294a5971da85010a708dc23b0edec192cbf27
+---
+ src/corelib/tools/qoffsetstringarray_p.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/corelib/tools/qoffsetstringarray_p.h b/src/corelib/tools/qoffsetstringarray_p.h
+index 4dd9e9603b..e26a57ff43 100644
+--- a/src/corelib/tools/qoffsetstringarray_p.h
++++ b/src/corelib/tools/qoffsetstringarray_p.h
+@@ -55,6 +55,7 @@
+ 
+ #include <tuple>
+ #include <array>
++#include <limits>
+ 
+ QT_BEGIN_NAMESPACE
+ 
+-- 
+2.34.0
+
