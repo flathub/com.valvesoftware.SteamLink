@@ -13,6 +13,7 @@ finish_args:
   - --socket=fallback-x11
   - --socket=pulseaudio
   - --socket=wayland
+  - --talk-name=org.freedesktop.ScreenSaver
 
 tags:
   - proprietary
