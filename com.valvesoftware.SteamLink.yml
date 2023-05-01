@@ -1,6 +1,6 @@
 app-id: com.valvesoftware.SteamLink
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: steamlink
 
@@ -122,6 +122,8 @@ modules:
         path: patches/org.kde.Sdk/qtwayland-use-gnome-platform-theme-on-gnome-based-desktops.patch
       - type: patch
         path: patches/backports/Fix-installing-qtwayland-without-qtquick-or-opengl-s.patch
+      - type: patch
+        path: patches/backports/Fix-build-with-libcxx-missing-array-include.patch
 
   - name: extra-cmake-modules
     buildsystem: cmake-ninja
@@ -138,6 +140,8 @@ modules:
       # url: https://invent.kde.org/frameworks/extra-cmake-modules.git
       # tag: v5.78.0
       # commit: 59d4958740a09d43aa5025a1cfe3d7b7d4d725b3
+      - type: patch
+        path: patches/backports/python-Bump-maximum-version-for-Python-3-module-generator.patch
 
   - name: kdbusaddons
     buildsystem: cmake-ninja
