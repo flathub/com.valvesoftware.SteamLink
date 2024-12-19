@@ -15,8 +15,11 @@
       existing Steam games.</p>
   </description>
   <releases>
-    <release version="1.3.12.269" date="2024-10-25">
+    <release version="1.3.14.283" date="2024-12-19">
       <description></description>
+    </release>
+    <release version="1.3.12.269" date="2024-10-25">
+      <description/>
     </release>
     <release version="1.3.10.259" date="2024-01-09"/>
     <release version="1.3.9.258" date="2023-10-31"/>
