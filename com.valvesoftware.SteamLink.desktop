@@ -5,6 +5,6 @@ Exec=/app/bin/steamlink %u
 Icon=com.valvesoftware.SteamLink
 Terminal=false
 Type=Application
-Categories=Game;
+Categories=Game;Utility;
 MimeType=x-scheme-handler/steamlink;
 Keywords=Games
