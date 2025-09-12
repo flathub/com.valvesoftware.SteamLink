@@ -1,0 +1,11 @@
+--- a/cmake/QtConfig.cmake.in	2024-02-08 21:31:05.000000000 +0530
++++ b/cmake/QtConfig.cmake.in	2024-02-08 21:31:05.000000000 +0530
+@@ -131,6 +131,8 @@
+                 ${QT_BUILD_CMAKE_PREFIX_PATH}
+                 ${_qt_cmake_dir}
+                 ${_qt_additional_packages_prefix_paths}
++                "/app/lib/cmake"
++                "/app/lib/${CMAKE_CXX_LIBRARY_ARCHITECTURE}/cmake"
+                 ${__qt_find_package_host_qt_path}
+                 ${_qt_additional_host_packages_prefix_paths}
+             ${__qt_use_no_default_path_for_qt_packages}
