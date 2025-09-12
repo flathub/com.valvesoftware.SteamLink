@@ -1,6 +1,6 @@
 app-id: com.valvesoftware.SteamLink
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: steamlink
 
@@ -18,57 +18,21 @@ tags:
   - proprietary
 
 modules:
-  - name: qt5-qtbase
+  - name: qt6-qtbase
+    buildsystem: cmake-ninja
+    config-opts: [-DINSTALL_ARCHDATADIR=lib, -DQT_DISABLE_RPATH=ON, -DBUILD_WITH_PCH=FALSE, -DQT_FEATURE_openssl_linked=ON, -DQT_FEATURE_system_sqlite=ON, -DQT_FEATURE_glibc_fortify_source=OFF]
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/5.14/5.14.1/submodules/qtbase-everywhere-src-5.14.1.tar.xz
+        url: https://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtbase-everywhere-src-6.9.2.tar.xz
         mirror-urls:
-          - https://repo.steampowered.com/steamlink/qtbase-everywhere-src-5.14.1.tar.xz
-        sha256: d9d423a6e7bcf1055c0372fc029f14a6fe67dd62c67b83095cde68b60b762cf7
+          - https://repo.steampowered.com/steamlink/qtbase-everywhere-src-6.9.2.tar.xz
+        sha256: 44be9c9ecfe04129c4dea0a7e1b36ad476c9cc07c292016ac98e7b41514f2440
 
       - type: patch
         path: patches/steamlink/qtbase.patch
         strip-components: 2
-
-      # From org.kde.Sdk
       - type: patch
-        path: patches/org.kde.Sdk/qtbase-avoid-hardcoding-kernel-version.patch
-      - type: patch
-        path: patches/org.kde.Sdk/qtbase-use-wayland-on-gnome.patch
-      # Temporary fix for https://github.com/flatpak/flatpak/issues/3397
-      - type: patch
-        path: patches/org.kde.Sdk/qtbase-revert-correct-handling-for-xdg-runtime-dir.patch
-      - type: patch
-        path: patches/org.kde.Sdk/qtbase-make-sure-to-correctly-construct-base-platform-theme.patch
-      - type: patch
-        path: patches/org.kde.Sdk/open-file-portal-writable.patch
-      - type: patch
-        path: patches/backports/Add-missing-limits-include.patch
-      - type: patch
-        path: patches/backports/Fix-build-with-GCC-11-include-limits.patch
-      - type: patch
-        path: patches/backports/Build-fixes-for-GCC-11.patch
-      - type: shell
-        commands:
-          - mv configure configure.qt
-      - type: script
-        commands:
-          - processed=`sed -e 's/--/-/g ; s/=/ /g' <<< $@`
-          - ./configure.qt $processed
-        dest-filename: configure
-
-    # Cargo-culted from org.kde.Sdk
-    build-options:
-      arch:
-        x86_64:
-          config-opts: [-reduce-relocations, -force-debug-info]
-        aarch64:
-          config-opts: [-no-reduce-relocations, -optimize-size, -opengl, es2]
-    config-opts: [-confirm-license, -opensource, -shared, -platform, linux-g++, -optimized-qmake,
-      -nomake, examples, -nomake, tests, -system-harfbuzz, -system-sqlite, -accessibility,
-      -dbus-linked, -fontconfig, -glib, -icu, -openssl-linked, -no-pch, -no-rpath,
-      -no-directfb, -no-linuxfb, -no-kms, -system-proxies, -gtk, -no-use-gold-linker,
-      -no-cups, -no-directfb, -no-gbm, -no-linuxfb, -no-kms, -archdatadir, /app/lib/]
+        path: patches/org.kde.Sdk/qtbase-find_package-paths.patch
     cleanup:
       - /bin
       - /doc
@@ -81,8 +45,14 @@ modules:
       - /lib/mkspecs
       - /lib/pkgconfig
 
-  - name: qt5-qtsvg
-    buildsystem: qmake
+  - name: qt6-qtsvg
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: http://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtsvg-everywhere-src-6.9.2.tar.xz
+        mirror-urls:
+          - https://repo.steampowered.com/steamlink/qtsvg-everywhere-src-6.9.2.tar.xz
+        sha256: d984cab8f26334aa1c15e5b8f0cd9f1b7c0c1289fe0b68c1c84ab469b75605a5
     cleanup:
       - /bin
       - /include
@@ -93,15 +63,17 @@ modules:
       - /lib/debug
       - /lib/mkspecs
       - /lib/pkgconfig
+
+  - name: qt6-wayland
+    buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: http://download.qt.io/archive/qt/5.14/5.14.1/submodules/qtsvg-everywhere-src-5.14.1.tar.xz
+        url: http://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtwayland-everywhere-src-6.9.2.tar.xz
         mirror-urls:
-          - https://repo.steampowered.com/steamlink/qtsvg-everywhere-src-5.14.1.tar.xz
-        sha256: 8540a57312f815f81a45b891b49959d776727fde17579bb6bf1a537996bc9359
-
-  - name: qt5-wayland
-    buildsystem: qmake
+          - https://repo.steampowered.com/steamlink/qtwayland-everywhere-src-6.9.2.tar.xz
+        sha256: cad79806565568f12f9983fed69219416abcee9d5deef4abdfcf94aa2eef7781
+      - type: patch
+        path: patches/org.kde.Sdk/qtwayland-use-adwaita-decorations-on-gnome-by-default.patch
     cleanup:
       - /bin
       - /include
@@ -112,63 +84,6 @@ modules:
       - /lib/debug
       - /lib/mkspecs
       - /lib/pkgconfig
-    sources:
-      - type: archive
-        url: http://download.qt.io/archive/qt/5.14/5.14.1/submodules/qtwayland-everywhere-src-5.14.1.tar.xz
-        mirror-urls:
-          - https://repo.steampowered.com/steamlink/qtwayland-everywhere-src-5.14.1.tar.xz
-        sha256: 2a03b9f554e88c5824ef237c814b3dd45844c022e97be0e091f4a502ca4c9520
-      - type: patch
-        path: patches/org.kde.Sdk/qtwayland-use-gnome-platform-theme-on-gnome-based-desktops.patch
-      - type: patch
-        path: patches/backports/Fix-installing-qtwayland-without-qtquick-or-opengl-s.patch
-      - type: patch
-        path: patches/backports/Fix-build-with-libcxx-missing-array-include.patch
-
-  - name: extra-cmake-modules
-    buildsystem: cmake-ninja
-    cleanup:
-      - '*'
-    sources:
-      - type: archive
-        url: https://download.kde.org/stable/frameworks/5.78/extra-cmake-modules-5.78.0.tar.xz
-        mirror-urls:
-          - https://repo.steampowered.com/steamlink/extra-cmake-modules-5.78.0.tar.xz
-        sha256: eede1f0c21f24eca56bd71a805fa76500a8c683bf21982cb33f4bba682d012f9
-      # also available as:
-      # type: git
-      # url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-      # tag: v5.78.0
-      # commit: 59d4958740a09d43aa5025a1cfe3d7b7d4d725b3
-      - type: patch
-        path: patches/backports/python-Bump-maximum-version-for-Python-3-module-generator.patch
-
-  - name: kdbusaddons
-    buildsystem: cmake-ninja
-    cleanup:
-      - /bin
-      - /include
-      - /lib/cmake
-      - /lib/mkspecs
-    config-opts:
-      - -DENABLE_TESTING=OFF
-    sources:
-      - type: archive
-        url: https://download.kde.org/stable/frameworks/5.78/kdbusaddons-5.78.0.tar.xz
-        mirror-urls:
-          - https://repo.steampowered.com/steamlink/kdbusaddons-5.78.0.tar.xz
-        sha256: 4f91d0b5762243e5e044c087d4faaa584ad5f779fdede138a0048fd4af24d399
-      # also available as:
-      # type: git
-      # url: https://invent.kde.org/frameworks/kdbusaddons.git
-      # tag: v5.78.0
-      # commit: e70c696143682bf23509aed4c31d5fc95093d452
-
-      # if we delete the l10n (which we don't want anyway) then it drops the
-      # dependency on QtLinguist
-      - type: shell
-        commands:
-          - rm -fr po
 
   - name: steamlink-binary
     sources:
