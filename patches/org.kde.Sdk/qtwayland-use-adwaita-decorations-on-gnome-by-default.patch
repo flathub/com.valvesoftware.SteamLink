@@ -1,0 +1,17 @@
+diff --git a/src/client/qwaylandintegration.cpp b/src/client/qwaylandintegration.cpp
+index 06a1aec..0ea9e0e 100644
+--- a/src/client/qwaylandintegration.cpp
++++ b/src/client/qwaylandintegration.cpp
+@@ -87,6 +87,12 @@ QWaylandIntegration::QWaylandIntegration()
+     QWaylandWindow::fixedToplevelPositions =
+             !qEnvironmentVariableIsSet("QT_WAYLAND_DISABLE_FIXED_POSITIONS");
+
++    const QByteArray xdgCurrentDesktop = qgetenv("XDG_CURRENT_DESKTOP");
++    if (xdgCurrentDesktop == "GNOME") {
++        if (!qEnvironmentVariableIsSet("QT_WAYLAND_DECORATION"))
++            qputenv("QT_WAYLAND_DECORATION", "adwaita");
++    }
++
+     sInstance = this;
+ }
+
