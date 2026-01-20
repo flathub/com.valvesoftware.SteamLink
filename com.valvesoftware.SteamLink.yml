@@ -20,7 +20,8 @@ tags:
 modules:
   - name: qt6-qtbase
     buildsystem: cmake-ninja
-    config-opts: [-DINSTALL_ARCHDATADIR=lib, -DQT_DISABLE_RPATH=ON, -DBUILD_WITH_PCH=FALSE, -DQT_FEATURE_openssl_linked=ON, -DQT_FEATURE_system_sqlite=ON, -DQT_FEATURE_glibc_fortify_source=OFF]
+    config-opts: [-DINSTALL_ARCHDATADIR=lib, -DQT_DISABLE_RPATH=ON, -DBUILD_WITH_PCH=FALSE,
+      -DQT_FEATURE_openssl_linked=ON, -DQT_FEATURE_system_sqlite=ON, -DQT_FEATURE_glibc_fortify_source=OFF]
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtbase-everywhere-src-6.9.2.tar.xz
@@ -88,8 +89,8 @@ modules:
   - name: steamlink-binary
     sources:
       - type: archive
-        url: https://repo.steampowered.com/steamlink/1.3.19.293/steamlink-1.3.19.293.tgz
-        sha256: 2a2a7deec7fd82869346b12b784111573b9df57bae18469803f00b89cbbb1146
+        url: https://repo.steampowered.com/steamlink/1.3.20.295/steamlink-1.3.20.295.tgz
+        sha256: 49666bb8cef6ebaf1956acdbb40aa3d577bed40175e1217faf678da91600eef2
         strip-components: 1
         x-checker-data:
           is-main-source: true
