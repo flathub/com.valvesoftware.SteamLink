@@ -42,7 +42,6 @@ modules:
       - /lib/*.la
       - /lib/*.prl
       - /lib/cmake
-      - /lib/debug
       - /lib/mkspecs
       - /lib/pkgconfig
 
@@ -61,7 +60,6 @@ modules:
       - /lib/*.la
       - /lib/*.prl
       - /lib/cmake
-      - /lib/debug
       - /lib/mkspecs
       - /lib/pkgconfig
 
@@ -82,7 +80,6 @@ modules:
       - /lib/*.la
       - /lib/*.prl
       - /lib/cmake
-      - /lib/debug
       - /lib/mkspecs
       - /lib/pkgconfig
 
