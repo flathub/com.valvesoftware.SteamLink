@@ -121,8 +121,9 @@ modules:
         path: com.valvesoftware.SteamLink.metainfo.xml
       - type: file
         path: com.valvesoftware.SteamLink.desktop
-      - type: dir
-        path: icons
+      - type: file
+        path: icons/256/steamlink.png
+        dest: "256"
     buildsystem: simple
     build-commands:
       - install -d /app/share/applications/
