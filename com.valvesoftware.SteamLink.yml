@@ -86,8 +86,8 @@ modules:
   - name: steamlink-binary
     sources:
       - type: archive
-        url: https://repo.steampowered.com/steamlink/1.4.0.318/steamlink-1.4.0.318.tgz
-        sha256: 9c4e8d064b08130b6ee468a3ac0779f272875317cb6c7f93feebe135edfd86e8
+        url: https://repo.steampowered.com/steamlink/1.4.1.319/steamlink-1.4.1.319.tgz
+        sha256: a116c9f55cc549496ce1738027f69285494b9dbc7e3fe90d372e24386dbf4d70
         strip-components: 1
         x-checker-data:
           is-main-source: true
