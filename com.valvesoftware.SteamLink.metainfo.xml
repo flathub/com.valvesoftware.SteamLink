@@ -5,7 +5,7 @@
   <!-- Copyright 2003-2021 Valve Corp. -->
   <!-- Copyright 2021 Collabora Ltd. -->
   <metadata_license>MIT</metadata_license>
-  <project_license>LicenseRef-proprietary</project_license>
+  <project_license>LicenseRef-proprietary=https://store.steampowered.com/subscriber_agreement</project_license>
   <name>Steam Link</name>
   <summary>Stream games from another computer with Steam</summary>
   <description>
